@@ -1,9 +1,9 @@
 package service_test
 
 import (
-	"testing"
 	"github.com/fngomez/go-twitter-concurrency/src/domain"
 	"github.com/fngomez/go-twitter-concurrency/src/service"
+	"testing"
 )
 
 func TestPublishedTweetIsSaved(t *testing.T) {

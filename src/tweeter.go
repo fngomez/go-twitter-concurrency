@@ -4,13 +4,18 @@ import (
 	"strconv"
 
 	"github.com/abiosoft/ishell"
-	"gitlab.grupoesfera.com.ar/CAP-00082-GrupoEsfera-GO/src/domain"
-	"gitlab.grupoesfera.com.ar/CAP-00082-GrupoEsfera-GO/src/service"
+	"github.com/fngomez/go-twitter-concurrency/src/service"
+	"github.com/fngomez/go-twitter-concurrency/src/domain"
 )
 
 func main() {
 
-	tweetManager := service.NewTweetManager()
+	quit := make(chan bool)
+
+	fileTweetWriter := service.NewFileTweetWriter()
+	tweetWriter := service.NewChannelTweetWriter(fileTweetWriter)
+
+	tweetManager := service.NewTweetManager(tweetWriter)
 
 	shell := ishell.New()
 	shell.SetPrompt("Tweeter >> ")
@@ -33,7 +38,7 @@ func main() {
 
 			tweet := domain.NewTextTweet(user, text)
 
-			id, err := tweetManager.PublishTweet(tweet)
+			id, err := tweetManager.PublishTweet(tweet, quit)
 
 			if err == nil {
 				c.Printf("Tweet sent with id: %v\n", id)
@@ -66,7 +71,7 @@ func main() {
 
 			tweet := domain.NewImageTweet(user, text, url)
 
-			id, err := tweetManager.PublishTweet(tweet)
+			id, err := tweetManager.PublishTweet(tweet, quit)
 
 			if err == nil {
 				c.Printf("Tweet sent with id: %v\n", id)
@@ -101,7 +106,7 @@ func main() {
 
 			tweet := domain.NewQuoteTweet(user, text, quoteTweet)
 
-			id, err := tweetManager.PublishTweet(tweet)
+			id, err := tweetManager.PublishTweet(tweet, quit)
 
 			if err == nil {
 				c.Printf("Tweet sent with id: %v\n", id)

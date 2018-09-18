@@ -2,9 +2,8 @@ package service_test
 
 import (
 	"testing"
-
-	"gitlab.grupoesfera.com.ar/CAP-00082-GrupoEsfera-GO/src/domain"
-	"gitlab.grupoesfera.com.ar/CAP-00082-GrupoEsfera-GO/src/service"
+	"github.com/fngomez/go-twitter-concurrency/src/domain"
+	"github.com/fngomez/go-twitter-concurrency/src/service"
 )
 
 func TestPublishedTweetIsSaved(t *testing.T) {

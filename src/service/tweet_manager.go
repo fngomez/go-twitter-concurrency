@@ -2,8 +2,7 @@ package service
 
 import (
 	"fmt"
-
-	"gitlab.grupoesfera.com.ar/CAP-00082-GrupoEsfera-GO/src/domain"
+	"github.com/fngomez/go-twitter-concurrency/src/domain"
 )
 
 type TweetManager struct {

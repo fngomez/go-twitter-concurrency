@@ -1,7 +1,7 @@
 package domain_test
 
 import "testing"
-import "gitlab.grupoesfera.com.ar/CAP-00082-GrupoEsfera-GO/src/domain"
+import "github.com/fngomez/go-twitter-concurrency/src/domain"
 
 func TestTextTweetPrintsUserAndText(t *testing.T) {
 
